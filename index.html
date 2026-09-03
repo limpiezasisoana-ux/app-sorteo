@@ -413,8 +413,7 @@ const SUPABASE_URL =
 "https://jqmcpricmwzggleupxwp.supabase.co";
 
 const SUPABASE_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxbWNwcmljbXd6Z2dsZXVweHdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwMDQzMjUsImV4cCI6MjEwMzU4MDMyNX0.-hAGr-rGNQyWzqqn93bMa4F6azwkgelxwTs_W4qAoy0";
-
+"sb_publishable_MeXcvWjl8pRh9643F2tgEA_re-9L-pU";
 let DATA = null;
 let selectedNumber = null;
 
@@ -427,10 +426,12 @@ document.getElementById(id);
 function headers(auth = false) {
   const result = {
     "apikey": SUPABASE_KEY,
-    "Authorization":
-      "Bearer " + (auth && adminToken ? adminToken : SUPABASE_KEY),
     "Content-Type": "application/json"
   };
+
+  if (auth && adminToken) {
+    result.Authorization = "Bearer " + adminToken;
+  }
 
   return result;
 }
