@@ -425,16 +425,12 @@ const el = id =>
 document.getElementById(id);
 
 function headers(auth = false) {
-
   const result = {
     "apikey": SUPABASE_KEY,
+    "Authorization":
+      "Bearer " + (auth && adminToken ? adminToken : SUPABASE_KEY),
     "Content-Type": "application/json"
   };
-
-  if (auth && adminToken) {
-    result.Authorization =
-      "Bearer " + adminToken;
-  }
 
   return result;
 }
